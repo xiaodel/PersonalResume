@@ -16,7 +16,11 @@ function onJsonChange(json) {
 }
 
 function doPrint() {
-
+  printJS({
+    printable: 'printJS-form',
+    type: 'html',
+    targetStyles: ['*'],
+  })
 }
 </script>
 
@@ -24,7 +28,7 @@ function doPrint() {
   <div class="details">
     <el-row :gutter="24">
 
-      <el-col :span="12">
+      <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
         <div class="editorBox">
           <JsonEditorVue
               class="editor"
@@ -35,16 +39,9 @@ function doPrint() {
           />
         </div>
       </el-col>
-      <el-col :span="12">
+      <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
         <nav class="navBox flex">
-          <el-button type="primary" @click="()=>{
-            printJS({
-    printable: 'printJS-form',
-    type: 'html',
-    targetStyles: ['*'],
-    style: $attrs
-  });
-          }">打印
+          <el-button type="primary" @click="doPrint">打印
           </el-button>
         </nav>
         <div class="templateBox">
@@ -82,6 +79,9 @@ function doPrint() {
     overflow-y: auto;
     width: 100%;
     max-height: calc(100vh - 3rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &::-webkit-scrollbar {
       width: 8px;
@@ -92,6 +92,28 @@ function doPrint() {
     .template {
       border: 1px solid #2c3e50;
       width: 100%;
+    }
+
+  }
+}
+
+
+@media (max-width: 768px) {
+  .details {
+    .editor {
+      width: 100%;
+      height: 50vh;
+    }
+
+    .templateBox {
+      max-height: none;
+
+      .template {
+        overflow: hidden;
+        min-width: 600px;
+        border: 1px solid #2c3e50;
+        transform: scale(0.6);
+      }
     }
 
   }

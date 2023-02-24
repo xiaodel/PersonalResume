@@ -5,13 +5,13 @@ import data from "@/data/data.json";
 </script>
 
 <template>
-  <nav class="nav">
+  <div class="nav">
     <div class="item" v-for="(value,key) in templates" :key="key">
       <RouterLink :to="`/details/${key}`" class="link">
         <component :is="value" :data="data"></component>
       </RouterLink>
     </div>
-  </nav>
+  </div>
 </template>
 
 <style lang="scss">
@@ -36,13 +36,14 @@ import data from "@/data/data.json";
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 600px) {
   .nav {
     .item {
-      width: 900px;
+      min-width: 600px;
       height: 800px;
       overflow-y: auto;
       border: 1px solid #2c3e50;
+      transform: scale(0.5);
     }
   }
 }

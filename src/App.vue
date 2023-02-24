@@ -18,8 +18,5 @@ html {
     align-items: center;
   }
 
-  .body {
-    flex: 1;
-  }
 }
 </style>
