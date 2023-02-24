@@ -17,6 +17,10 @@ import data from "@/data/data.json";
 <style lang="scss">
 
 .nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   .item {
     width: 600px;
     height: 800px;
@@ -32,11 +36,14 @@ import data from "@/data/data.json";
   }
 }
 
-/*@media (min-width: 1024px) {*/
-/*  .about {*/
-/*    min-height: 100vh;*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*  }*/
-/*}*/
+@media (max-width: 800px) {
+  .nav {
+    .item {
+      width: 900px;
+      height: 800px;
+      overflow-y: auto;
+      border: 1px solid #2c3e50;
+    }
+  }
+}
 </style>
