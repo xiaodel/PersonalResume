@@ -65,14 +65,19 @@ const {data} = defineProps({data: Object})
           </template>
           <template v-if="Object.prototype.toString.call(value) === '[object Object]'">
             <div class="objectBox">
-              <el-row :gutter="20">
-                <el-col :span="10" v-for="(item,key1) in value">
-                  <div class="flex">
-                    <div class="label" v-html="key1"></div>
-                    <div v-html="item"></div>
-                  </div>
-                </el-col>
-              </el-row>
+              <div class="flex">
+                <el-row :gutter="20">
+                  <el-col :span="10" v-for="(item,key1) in value">
+                    <div class="flex">
+                      <div class="label" v-html="key1"></div>
+                      <div v-html="item"></div>
+                    </div>
+                  </el-col>
+                </el-row>
+                <div class="portraitBox">
+                  <img class="portrait" :src="data.portrait"/>
+                </div>
+              </div>
             </div>
           </template>
         </div>
@@ -188,13 +193,22 @@ const {data} = defineProps({data: Object})
 
       .arrayBox {
         padding: 1.5rem 0;
-        .listItem:not(:last-child){
+
+        .listItem:not(:last-child) {
           margin-bottom: 1rem;
         }
       }
 
       .objectBox {
         padding: 1.5rem 2rem;
+
+        .portraitBox {
+          .portrait {
+            height: 9rem;
+            width: 8rem;
+            object-fit: cover;
+          }
+        }
       }
 
       .label {
