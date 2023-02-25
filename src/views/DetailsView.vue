@@ -18,13 +18,16 @@ function doPrint($refs) {
   $refs.generatePdf()
 }
 
-function onProgress() {
+function onProgress(event) {
+  console.warn(event)
 }
 
-function hasStartedGeneration() {
+function hasStartedGeneration(event) {
+  console.warn(event)
 }
 
-function hasGenerated() {
+function hasGenerated(event) {
+  console.warn(event)
 }
 
 </script>
@@ -50,29 +53,30 @@ function hasGenerated() {
           </el-button>
         </nav>
         <div class="templateBox">
-          <Vue3Html2pdf
-              :show-layout="true"
-              :float-layout="false"
-              :enable-download="false"
-              :preview-modal="true"
-              :paginate-elements-by-height="1400"
-              filename="hee hee"
-              :pdf-quality="2"
-              :manual-pagination="false"
-              pdf-format="a4"
-              pdf-orientation="portrait"
-              pdf-content-width="800px"
-              @progress="onProgress($event)"
-              @hasStartedGeneration="hasStartedGeneration()"
-              @hasGenerated="hasGenerated($event)"
-              ref="html2Pdf"
-          >
-            <template v-slot:pdf-content>
-              <div class="template" id="printJS-form1">
-                <component :is="params.id" :data="componentData"></component>
-              </div>
-            </template>
-          </Vue3Html2pdf>
+          <div class="templateBor">
+            <div class="template">
+              <Vue3Html2pdf
+                  :show-layout="true"
+                  :float-layout="false"
+                  :enable-download="false"
+                  :preview-modal="true"
+                  :html-to-pdf-options="{margin:16}"
+                  pdf-content-width="820px"
+                  :pdf-quality="2"
+                  :manual-pagination="false"
+                  pdf-format="a4"
+                  pdf-orientation="portrait"
+                  @progress="onProgress($event)"
+                  @hasStartedGeneration="hasStartedGeneration"
+                  @hasGenerated="hasGenerated($event)"
+                  ref="html2Pdf"
+              >
+                <template v-slot:pdf-content>
+                  <component :is="params.id" :data="componentData"></component>
+                </template>
+              </Vue3Html2pdf>
+            </div>
+          </div>
         </div>
       </el-col>
     </el-row>
@@ -109,12 +113,17 @@ function hasGenerated() {
       height: 10px;
     }
 
-
-    .template {
+    .templateBor {
       border: 1px solid #2c3e50;
-      width: 100%;
-      overflow: hidden;
+      padding: 5rem;
+      position: relative;
+
+      .template {
+        width: 100%;
+        overflow: hidden;
+      }
     }
+
 
   }
 }
@@ -143,7 +152,7 @@ function hasGenerated() {
         overflow: hidden;
         height: auto;
         border: 1px solid #2c3e50;
-        transform: scale(0.5) ;
+        transform: scale(0.5);
         margin-bottom: 8rem;
       }
     }

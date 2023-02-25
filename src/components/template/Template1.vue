@@ -74,7 +74,7 @@ const {data} = defineProps({data: Object})
                     </div>
                   </el-col>
                 </el-row>
-                <div class="portraitBox">
+                <div class="portraitBox" v-if="data.portrait">
                   <img class="portrait" :src="data.portrait"/>
                 </div>
               </div>
@@ -91,12 +91,13 @@ const {data} = defineProps({data: Object})
 .box {
   .titleBox {
     position: relative;
-    padding: 2rem;
+    padding-bottom: 2rem;
+    color: black;
 
     &:after {
       content: ' ';
       position: absolute;
-      bottom: 0rem;
+      bottom: 0;
       left: -1rem;
       right: 40%;
       border-width: 1.2rem 1rem;
@@ -129,7 +130,7 @@ const {data} = defineProps({data: Object})
   }
 
   .module {
-    padding: 0 3rem;
+    padding: 0 1rem;
     margin: 1rem 0;
 
     .iconBox {
@@ -153,7 +154,7 @@ const {data} = defineProps({data: Object})
           border-width: 1.98rem 2rem;
           border-style: solid;
           border-color: transparent transparent black transparent;
-          z-index: -1;
+          z-index: 0;
         }
 
         &:before {
@@ -165,7 +166,7 @@ const {data} = defineProps({data: Object})
           border-width: 0.5rem 1rem;
           border-style: solid;
           border-color: transparent black transparent transparent;
-          z-index: -1;
+          z-index: 0;
         }
       }
 

@@ -17,7 +17,9 @@ import data from "@/data/data.json";
         <div class="nav">
           <div class="item" v-for="(value,key) in templates" :key="key">
             <RouterLink :to="`/details/${key}`" class="link">
-              <component :is="value" :data="data"></component>
+              <div class="border">
+                <component :is="value" :data="data"></component>
+              </div>
             </RouterLink>
           </div>
         </div>
@@ -43,16 +45,23 @@ import data from "@/data/data.json";
     justify-content: center;
     align-items: center;
 
+
     .item {
-      width: 600px;
-      height: 800px;
       overflow-y: auto;
       border: 1px solid #2c3e50;
       transform: scale(0.5);
+      padding: 2rem;
+      width: 600px;
+      height: 800px;
+
 
       &::-webkit-scrollbar {
         width: 8px;
         height: 10px;
+      }
+
+      .border {
+        overflow: hidden;
       }
 
     }
