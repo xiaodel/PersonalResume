@@ -9,8 +9,8 @@ const {data} = defineProps({data: Object})
   <div class="box">
     <div class="titleBox">
       <div class="flex align-center">
-        <div class="title">{{ data.title }}</div>
-        <div class="desc">{{ data.desc }}</div>
+        <div class="title" v-html="data.title"></div>
+        <div class="desc" v-html="data.desc"></div>
       </div>
     </div>
     <div class="module" v-for="(value,key) in data">
