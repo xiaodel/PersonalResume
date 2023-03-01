@@ -60,9 +60,9 @@ function hasGenerated(event) {
                   :float-layout="false"
                   :enable-download="false"
                   :preview-modal="true"
-                  :paginate-elements-by-height="1400"
-                  :html-to-pdf-options="{margin:16}"
-                  pdf-content-width="820px"
+                  :paginate-elements-by-height="1800"
+                  :html-to-pdf-options="{margin:16,html2canvas: {useCORS: true}}"
+                  pdf-content-width="650px"
                   :pdf-quality="2"
                   :manual-pagination="false"
                   pdf-format="a4"
@@ -73,7 +73,9 @@ function hasGenerated(event) {
                   ref="html2Pdf"
               >
                 <template v-slot:pdf-content>
-                  <component :is="params.id" :data="componentData"></component>
+                  <div class="pdfBox">
+                    <component :is="params.id" :data="componentData"></component>
+                  </div>
                 </template>
               </Vue3Html2pdf>
             </div>
@@ -107,7 +109,7 @@ function hasGenerated(event) {
   .templateBox {
     height: calc(100vh - 3rem);
     overflow-y: auto;
-    width: auto;
+    width: max-content;
 
     &::-webkit-scrollbar {
       width: 8px;
@@ -122,6 +124,10 @@ function hasGenerated(event) {
       .template {
         width: 100%;
         overflow: hidden;
+        .pdfBox{
+          word-break: break-all;
+          white-space:pre-wrap;
+        }
       }
     }
 

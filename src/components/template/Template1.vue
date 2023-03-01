@@ -15,17 +15,19 @@ const {data} = defineProps({data: Object})
     </div>
     <div class="module" v-for="(value,key) in data">
       <template v-if="value instanceof  Object || value instanceof  Array">
-        <div class="iconBox flex">
-          <div class="text">
-            <div v-html="key"></div>
+        <section class="pdf-item">
+          <div class="iconBox flex">
+            <div class="text">
+              <div v-html="key"></div>
+            </div>
+            <div class="titleDecorateBox">
+              <div class="decorate"></div>
+            </div>
+            <div class="titleDecorateBox wide">
+              <div class="decorate"></div>
+            </div>
           </div>
-          <div class="titleDecorateBox">
-            <div class="decorate"></div>
-          </div>
-          <div class="titleDecorateBox wide">
-            <div class="decorate"></div>
-          </div>
-        </div>
+        </section>
         <div class="content">
           <template v-if="Object.prototype.toString.call(value) === '[object Array]'">
             <div class="arrayBox">
@@ -38,14 +40,18 @@ const {data} = defineProps({data: Object})
 
                         <template v-if="Object.prototype.toString.call(item1) === '[object Array]'" class="flex">
                           <template v-for="(item2) in item1">
-                            <li>
-                              <div v-html="item2"></div>
-                            </li>
+                            <section class="pdf-item">
+                              <li>
+                                <div v-html="item2"></div>
+                              </li>
+                            </section>
                           </template>
                         </template>
 
                         <template v-if="Object.prototype.toString.call(item1) === '[object String]'">
-                          <div v-html="item1"></div>
+                          <section class="pdf-item">
+                            <div v-html="item1"></div>
+                          </section>
                         </template>
 
                       </template>
@@ -53,9 +59,11 @@ const {data} = defineProps({data: Object})
                   </template>
 
                   <template v-if="Object.prototype.toString.call(item) === '[object String]'">
-                    <li>
-                      <div v-html="item"></div>
-                    </li>
+                    <section class="pdf-item">
+                      <li>
+                        <div v-html="item"></div>
+                      </li>
+                    </section>
                   </template>
 
                 </template>
@@ -64,21 +72,23 @@ const {data} = defineProps({data: Object})
             </div>
           </template>
           <template v-if="Object.prototype.toString.call(value) === '[object Object]'">
-            <div class="objectBox">
-              <div class="flex">
-                <el-row :gutter="20">
-                  <el-col :span="10" v-for="(item,key1) in value">
-                    <div class="flex">
-                      <div class="label" v-html="key1"></div>
-                      <div v-html="item"></div>
-                    </div>
-                  </el-col>
-                </el-row>
-                <div class="portraitBox" v-if="data.portrait">
-                  <img class="portrait" :src="data.portrait"/>
+            <section class="pdf-item">
+              <div class="objectBox">
+                <div class="flex">
+                  <el-row :gutter="22">
+                    <el-col :span="11" v-for="(item,key1) in value">
+                      <div class="flex">
+                        <div class="label" v-html="key1"></div>
+                        <div v-html="item"></div>
+                      </div>
+                    </el-col>
+                  </el-row>
+                  <div class="portraitBox" v-if="data.portrait">
+                    <img class="portrait" :src="data.portrait"/>
+                  </div>
                 </div>
               </div>
-            </div>
+            </section>
           </template>
         </div>
       </template>
@@ -89,6 +99,10 @@ const {data} = defineProps({data: Object})
 
 <style lang="scss">
 .box {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
   .titleBox {
     position: relative;
     padding-bottom: 2rem;
@@ -204,6 +218,8 @@ const {data} = defineProps({data: Object})
         padding: 1.5rem 2rem;
 
         .portraitBox {
+          flex-shrink: 0;
+
           .portrait {
             height: 9rem;
             width: 8rem;
