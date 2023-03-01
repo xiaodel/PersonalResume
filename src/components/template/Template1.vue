@@ -110,8 +110,10 @@ const {data} = defineProps({data: Object})
 
     &:after {
       content: ' ';
+      height: 0;
       position: absolute;
       bottom: 0;
+      width: 60%;
       left: -1rem;
       right: 40%;
       border-width: 1.2rem 1rem;
@@ -121,6 +123,8 @@ const {data} = defineProps({data: Object})
 
     &:before {
       content: ' ';
+      height: 0;
+      width: 50%;
       position: absolute;
       bottom: -1rem;
       right: -1rem;
