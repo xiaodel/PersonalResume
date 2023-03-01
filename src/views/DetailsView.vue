@@ -60,6 +60,7 @@ function hasGenerated(event) {
                   :float-layout="false"
                   :enable-download="false"
                   :preview-modal="true"
+                  :paginate-elements-by-height="1400"
                   :html-to-pdf-options="{margin:16}"
                   pdf-content-width="820px"
                   :pdf-quality="2"
